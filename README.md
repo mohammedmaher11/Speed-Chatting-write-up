@@ -20,12 +20,16 @@ The web application interface contains an explicit feature for updating profile 
 
 Because the application fails to restrict file uploads strictly to image types (such as `.png`, `.jpg`, or `.gif`), executable files can be transferred directly to the server filesystem.
 
+
 ![HTML Inspector View](Screenshot%202026-11-09%20034400.png)
+
 
 ### **3. Exploitation (Remote Code Execution)**
 To exploit this unrestricted upload vulnerability, a custom Python script (`rev.py`) was prepared to initiate a reverse socket connection back to the attacker's listener upon execution.
 
+
 ![Python Reverse Shell Code](Screenshot%202026-11-09%20034106.png)
+
 
 #### **Payload (**`rev.py`**):**
 ```python

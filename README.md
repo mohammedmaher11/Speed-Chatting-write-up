@@ -70,13 +70,17 @@ connect_and_spawn()
 `nc -lvnp 4444` 
 
 1. Upload `rev.py` via the profile update form and trigger its execution on the server.
+
+   
 ![Profile Update Interface](Screenshot%202026-11-09%20034136.png)
 
-3. Receive the reverse interactive shell connection as the `root` user.
 
+3. Receive the reverse interactive shell connection as the `root` user.
 4. Navigate to `/opt/Speed_Chat` and retrieve the flag (`flag.txt`).
 
+
 `THM{``********************************}`
+
 ![Netcat Listener and Flag Retrieval](Screenshot%202026-11-09%20033449.png)
 
 ## **Remediation & Countermeasures**

